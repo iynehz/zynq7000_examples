@@ -1,0 +1,24 @@
+/include/ "system-conf.dtsi"
+/ {
+};
+
+&gem0 {
+    local-mac-address = [00 0a 35 00 03 22];
+    //clock-frequency = <25000000>;
+    compatible = "xlnx,zynq-gem";
+    status = "okay";
+    phy-mode = "mii";
+    phy-handle = <&phy1>;
+    xlnx,ptnp-enet-clock = <0x6750918>;
+    xlnx,has-mdio = <0x1>;
+
+    mdio {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        phy1:ethernet-phy@1 {
+            compatible = "realtek,rtl8201","ethernet-phy-id001c.c816";
+            reg = <0>;
+            //max-speed = <100>;
+        };
+    };
+};

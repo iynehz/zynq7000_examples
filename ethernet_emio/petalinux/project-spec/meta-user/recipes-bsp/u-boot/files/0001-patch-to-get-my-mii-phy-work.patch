@@ -1,0 +1,22 @@
+From bb3d5af8ce57f5c2d89eaa5f800f64d10ba88629 Mon Sep 17 00:00:00 2001
+From: Zhenyi Zhou <iynehz@163.com>
+Date: Thu, 31 Oct 2024 15:38:24 +0000
+Subject: [PATCH] patch to get my mii phy work
+
+---
+ drivers/clk/clk_zynq.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/clk/clk_zynq.c b/drivers/clk/clk_zynq.c
+index be5226175f..e44dd29fca 100644
+--- a/drivers/clk/clk_zynq.c
++++ b/drivers/clk/clk_zynq.c
+@@ -355,6 +355,8 @@ static ulong zynq_clk_set_gem_rate(struct zynq_clk_priv *priv, enum zynq_clk id,
+ 
+ 	if (zynq_clk_get_gem_rclk(id) == mio_clk)
+ 		return zynq_clk_set_peripheral_rate(priv, id, rate, true);
++	debug("this is a hack to get my mii phy work");
++	return zynq_clk_set_peripheral_rate(priv, id, rate, true);
+ 
+ 	parent = &priv->gem_emio_clk[id - gem0_clk];
+ 	if (parent->dev)
